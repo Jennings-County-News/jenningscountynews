@@ -8,7 +8,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px 40px; }
 
-        /* Top Bar & Masthead */
         .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
         .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
         .back-link:hover { color: #b20000; }
@@ -16,10 +15,8 @@
         header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
         .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
 
-        /* Article Workspace */
         article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
-        /* Interactive Input Styling matched to Newspaper Layout */
         .admin-control-bar { max-width: 750px; margin: 20px auto; background: #f0f0f0; border: 1px solid #121212; padding: 15px; font-family: Arial, sans-serif; font-size: 12px; }
         .admin-control-bar label { font-weight: bold; display: block; margin-bottom: 5px; text-transform: uppercase; }
         .admin-control-bar select, .admin-control-bar input[type="file"] { margin-bottom: 15px; font-size: 12px; }
@@ -31,16 +28,13 @@
         .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
         .edit-byline { font-family: Arial, sans-serif; font-size: 11px; border: 1px dashed #bbb; padding: 2px 5px; text-transform: uppercase; }
 
-        /* Image Display Box */
         .article-image { margin-bottom: 25px; text-align: center; }
         .article-image img { width: 100%; max-height: 450px; object-fit: cover; border: 1px solid #ddd; display: none; }
         .photo-placeholder { background: #eee; height: 250px; display: flex; align-items: center; justify-content: center; color: #777; font-family: Arial, sans-serif; font-size: 12px; border: 1px dashed #aaa; }
         .edit-caption { width: 100%; font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
 
-        /* Content Editor */
         .edit-body { width: 100%; min-height: 250px; font-family: 'Georgia', serif; font-size: 17px; line-height: 1.6; color: #1a1a1a; padding: 10px; border: 1px dashed #bbb; background: transparent; }
 
-        /* Export Bar */
         .action-bar { max-width: 750px; margin: 20px auto; text-align: center; }
         .btn-action { background: #121212; color: #fff; border: none; padding: 12px 24px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
         .btn-action:hover { background: #b20000; }
@@ -59,10 +53,9 @@
         <a href="../index.html" class="masthead-title">Jennings County News</a>
     </header>
 
-    <!-- SETTINGS & IMAGE UPLOAD BAR -->
     <div class="admin-control-bar">
         <label for="visibility-select">Article Visibility:</label>
-        <select id="visibility-select" style="padding: 4px; margin-bottom: 15px;">
+        <select id="visibility-select">
             <option value="true">Public (Visible to everyone)</option>
             <option value="false">Private (Hidden from public)</option>
         </select>
@@ -71,10 +64,9 @@
         <input type="file" id="image-input" accept="image/*" onchange="previewUploadedImage(event)">
     </div>
 
-    <!-- LIVE NEWSPAPER EDITING CANVAS -->
     <article>
         <input type="text" id="cat-field" class="edit-category" value="JENNINGS COUNTY • PUBLIC SAFETY">
-        <input type="text" id="title-field" class="edit-headline" value="Headline of the Article Goes Here" oninput="updateSlug()">
+        <input type="text" id="title-field" class="edit-headline" value="Headline of the Article Goes Here">
         <input type="text" id="sub-field" class="edit-subheadline" value="An optional subheadline or quick summary of the news story goes here.">
         
         <div class="byline-bar">
@@ -82,7 +74,6 @@
             <div>PUBLISHED: <span id="current-date">August 30, 2026</span></div>
         </div>
 
-        <!-- IMAGE DISPLAY CONTAINER -->
         <div class="article-image">
             <div id="photo-box" class="photo-placeholder">[ Upload photo above to embed image ]</div>
             <img id="image-preview" src="" alt="Story Image">
@@ -107,7 +98,6 @@ Third paragraph with additional context and closing statements.</textarea>
     <script>
         let uploadedImageBase64 = "";
 
-        // Convert uploaded image to Base64 data string so it embeds directly inside the file
         function previewUploadedImage(event) {
             const file = event.target.files[0];
             if (file) {
@@ -132,11 +122,9 @@ Third paragraph with additional context and closing statements.</textarea>
             const author = document.getElementById('author-field').value;
             const caption = document.getElementById('caption-field').value;
             
-            // Format body paragraphs
             const rawBody = document.getElementById('body-field').value;
             const paragraphs = rawBody.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n            ');
 
-            // Image tag handling
             let imageHTML = `<div style="background:#eee; height:250px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>`;
             if (uploadedImageBase64) {
                 imageHTML = `<img src="${uploadedImageBase64}" alt="${title}">`;
@@ -240,7 +228,6 @@ Third paragraph with additional context and closing statements.</textarea>
 </body>
 </html>`;
 
-            // Download file directly
             const filename = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.html';
             const blob = new Blob([fullPageHTML], { type: 'text/html' });
             const link = document.createElement('a');
