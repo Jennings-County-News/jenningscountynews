@@ -23,13 +23,16 @@
         header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
         .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
 
-        /* Article Workspace (Inline Editable Fields) */
+        /* Article Workspace */
         article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
         .edit-input { width: 100%; border: 1px dashed #ccc; padding: 4px; background: #fff; }
         .edit-input:focus { outline: 2px solid #b20000; border-color: transparent; }
 
-        .category-input { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        /* Dropdown Category Select Box */
+        .category-select { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; background: #fff; border: 1px dashed #ccc; padding: 4px 6px; cursor: pointer; width: 100%; }
+        .category-select:focus { outline: 2px solid #b20000; border-color: transparent; }
+
         .headline-input { font-family: 'Georgia', serif; font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; }
         .subheadline-input { font-family: 'Georgia', serif; font-size: 18px; color: #444; font-style: italic; margin-bottom: 15px; }
         
@@ -80,7 +83,16 @@
     <div class="ad-space">Advertisement Space</div>
 
     <article>
-        <input type="text" id="edit-cat" class="edit-input category-input" value="JENNINGS COUNTY • PUBLIC SAFETY">
+        <select id="edit-cat" class="category-select">
+            <option value="JENNINGS COUNTY • PUBLIC SAFETY">JENNINGS COUNTY • PUBLIC SAFETY</option>
+            <option value="BARTHOLOMEW COUNTY • COLUMBUS">BARTHOLOMEW COUNTY • COLUMBUS</option>
+            <option value="JACKSON COUNTY • SEYMOUR">JACKSON COUNTY • SEYMOUR</option>
+            <option value="JENNINGS COUNTY • INFRASTRUCTURE">JENNINGS COUNTY • INFRASTRUCTURE</option>
+            <option value="NORTH VERNON • PROGRESS">NORTH VERNON • PROGRESS</option>
+            <option value="HIGH SCHOOL ATHLETICS • CROSS COUNTRY">HIGH SCHOOL ATHLETICS • CROSS COUNTRY</option>
+            <option value="TRI-COUNTY • ENFORCEMENT">TRI-COUNTY • ENFORCEMENT</option>
+        </select>
+
         <input type="text" id="edit-headline" class="edit-input headline-input" value="Headline of the Article Goes Here">
         <input type="text" id="edit-subheadline" class="edit-input subheadline-input" value="An optional subheadline or quick summary of the news story goes here.">
         
@@ -112,7 +124,6 @@ Third paragraph with additional context and closing statements.</textarea>
     <script>
         let uploadedBase64Image = "";
 
-        // Convert uploaded image file to Base64 to embed into final HTML output
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -130,7 +141,6 @@ Third paragraph with additional context and closing statements.</textarea>
             }
         }
 
-        // Export current view directly into the standalone article template
         function generateArticleHTML() {
             const isPublic = document.getElementById('visibility-toggle').value;
             const category = document.getElementById('edit-cat').value;
@@ -139,14 +149,12 @@ Third paragraph with additional context and closing statements.</textarea>
             const byline = document.getElementById('edit-byline').value;
             const caption = document.getElementById('edit-caption').value;
             
-            // Format body paragraphs
             const rawBody = document.getElementById('edit-body').value;
             const formattedBody = rawBody.split('\n\n')
                 .filter(p => p.trim() !== '')
                 .map(p => `<p>${p.trim()}</p>`)
                 .join('\n            ');
 
-            // Handle image rendering
             let imageContent = `<div style="background:#eee; height:300px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>`;
             if (uploadedBase64Image) {
                 imageContent = `<img src="${uploadedBase64Image}" alt="${headline}">`;
@@ -162,7 +170,6 @@ Third paragraph with additional context and closing statements.</textarea>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px; }
 
-        /* Top Bar & Masthead */
         .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
         .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
         .back-link:hover { color: #b20000; }
@@ -170,7 +177,6 @@ Third paragraph with additional context and closing statements.</textarea>
         header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
         .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
 
-        /* Article Main Content */
         article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
         .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
@@ -179,19 +185,15 @@ Third paragraph with additional context and closing statements.</textarea>
         
         .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; }
         
-        /* Image / Media Container */
         .article-image { margin-bottom: 25px; }
         .article-image img { width: 100%; height: auto; border: 1px solid #ddd; }
         .image-caption { font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; }
 
-        /* Story Text Body */
         .article-body p { font-size: 17px; margin-bottom: 18px; color: #1a1a1a; text-align: justify; }
         .article-body p:first-of-type::first-letter { font-size: 42px; float: left; line-height: 0.8; padding-right: 8px; font-weight: bold; font-family: 'Times New Roman', serif; }
 
-        /* Ad Placeholder Space */
         .ad-space { max-width: 750px; margin: 20px auto; text-align: center; background: #f0f0f0; border: 1px dashed #ccc; padding: 15px; font-family: Arial, sans-serif; font-size: 10px; color: #888; text-transform: uppercase; }
 
-        /* Private / Access Denied Screen */
         .access-denied { max-width: 600px; margin: 80px auto; text-align: center; font-family: Arial, sans-serif; display: none; }
         .access-denied h2 { font-size: 28px; margin-bottom: 10px; color: #b20000; }
         .access-denied p { font-size: 14px; color: #555; margin-bottom: 20px; }
@@ -254,7 +256,6 @@ Third paragraph with additional context and closing statements.</textarea>
     </div>
 
     <script>
-        // Check visibility status on load
         if (!IS_PUBLIC) {
             document.getElementById('article-content').style.display = 'none';
             document.getElementById('private-notice').style.display = 'block';
@@ -264,7 +265,6 @@ Third paragraph with additional context and closing statements.</textarea>
 </body>
 </html>`;
 
-            // Download file
             const fileName = headline.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.html';
             const blob = new Blob([outputHTML], { type: 'text/html' });
             const link = document.createElement('a');
