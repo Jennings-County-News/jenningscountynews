@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main # or master, depending on your default branch name
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "articles"
+    label: "Articles"
+    folder: "articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "County/Category", name: "category", widget: "select", options: ["Jennings County", "Bartholomew County", "Jackson County", "Sports", "Public Safety"]}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Body Text", name: "body", widget: "markdown"}
