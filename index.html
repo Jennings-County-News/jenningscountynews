@@ -3,199 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jennings County News</title>
+    <title>Jennings County News - Serving Jennings, Bartholomew, and Jackson Counties</title>
     <style>
-        :root {
-            --bg-color: #f4f4f9;
-            --card-bg: #ffffff;
-            --text-color: #121212;
-            --text-muted: #555555;
-            --border-color: #dddddd;
-            --accent-color: #b20000;
-            --header-bg: #121212;
-            --header-text: #ffffff;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.5; padding: 0 15px; }
 
-        body.dark-mode {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --text-muted: #aaa;
-            --border-color: #333333;
-            --accent-color: #ff4d4d;
-            --header-bg: #000000;
-            --header-text: #ffffff;
-        }
+        /* Top Utility Bar */
+        .utility-bar { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
+        .subscribe-btn { background: #000; color: #fff; padding: 3px 8px; text-decoration: none; border-radius: 2px; }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s, color 0.2s; }
-        body { font-family: 'Georgia', serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        /* Masthead */
+        header { max-width: 1100px; margin: 0 auto; text-align: center; padding: 15px 0 10px; }
+        .masthead-title { font-size: 56px; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; font-family: 'Times New Roman', serif; line-height: 1; }
+        .sub-header { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 4px 0; border-top: 1px solid #121212; border-bottom: 3px double #121212; }
 
-        /* Header & Masthead */
-        header { background-color: var(--header-bg); color: var(--header-text); text-align: center; padding: 30px 20px 20px; border-bottom: 4px solid var(--accent-color); }
-        .masthead-title { font-size: 38px; text-transform: uppercase; letter-spacing: -1px; font-weight: bold; }
-        .masthead-sub { font-family: Arial, sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; color: #ccc; }
+        /* Navigation */
+        nav { max-width: 1100px; margin: 0 auto; border-bottom: 1px solid #121212; text-align: center; padding: 8px 0; }
+        nav a { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none; color: #121212; margin: 0 12px; }
+        nav a:hover { color: #b20000; }
 
-        /* Navigation Bar */
-        nav { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 10px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
-        .nav-categories { display: flex; gap: 10px; flex-wrap: wrap; }
-        .nav-btn { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; background: none; border: 1px solid var(--border-color); padding: 6px 12px; cursor: pointer; color: var(--text-color); border-radius: 3px; }
-        .nav-btn.active, .nav-btn:hover { background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); }
-
-        /* Controls: Search & Dark Mode */
-        .controls { display: flex; gap: 10px; align-items: center; margin-top: 10px; width: 100%; max-width: 1000px; padding: 0 20px; margin: 15px auto 0; }
-        .search-box { flex-grow: 1; padding: 8px 12px; font-size: 14px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--card-bg); color: var(--text-color); font-family: Arial, sans-serif; }
-        .theme-toggle { font-family: Arial, sans-serif; font-size: 12px; padding: 8px 12px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); cursor: pointer; border-radius: 4px; font-weight: bold; }
-
-        /* Main Layout */
-        main { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-        .section-header { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid var(--text-color); padding-bottom: 5px; margin-bottom: 20px; letter-spacing: 1px; }
-
-        /* Article Grid */
-        .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .article-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .article-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .article-cat { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: var(--accent-color); text-transform: uppercase; margin-bottom: 8px; }
-        .article-title { font-size: 20px; margin-bottom: 10px; line-height: 1.3; }
-        .article-date { font-family: Arial, sans-serif; font-size: 11px; color: var(--text-muted); margin-top: auto; }
-
-        #no-results { display: none; font-family: Arial, sans-serif; font-size: 14px; color: var(--text-muted); text-align: center; padding: 40px 0; }
+        /* Main Front Page Grid */
+        main { max-width: 1100px; margin: 20px auto; display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; border-bottom: 1px solid #121212; padding-bottom: 30px; }
         
-        footer { text-align: center; padding: 30px 20px; font-family: Arial, sans-serif; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 40px; }
+        .col-left { border-right: 1px solid #e0e0e0; padding-right: 15px; }
+        .col-center { border-right: 1px solid #e0e0e0; padding-right: 15px; padding-left: 5px; }
+        .col-right { padding-left: 5px; }
+
+        /* Article Formatting */
+        .category { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 4px; }
+        .byline { font-family: Arial, sans-serif; font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 8px; }
+        
+        /* Lead Story */
+        .lead-story h1 { font-size: 32px; line-height: 1.1; margin-bottom: 10px; font-weight: bold; }
+        .photo-box { background: #f0f0f0; border: 1px solid #ddd; height: 220px; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 12px; color: #777; margin-bottom: 15px; }
+        .story-text { font-size: 14px; line-height: 1.5; color: #222; text-align: justify; margin-bottom: 15px; }
+        
+        /* Side Stories */
+        .side-story { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #ddd; }
+        .side-story:last-child { border-bottom: none; }
+        .side-story h2 { font-size: 18px; line-height: 1.2; margin-bottom: 6px; }
+        .side-story a { text-decoration: none; color: inherit; }
+        .side-story a:hover h2 { color: #b20000; }
+
+        /* Dynamic Feed Container */
+        #dynamic-articles-container { grid-column: 1 / -1; margin-top: 20px; border-top: 2px solid #121212; padding-top: 20px; display: none; }
+
+        footer { max-width: 1100px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer a { color: inherit; text-decoration: none; }
     </style>
 </head>
 <body>
 
+    <div class="utility-bar">
+        <div>SUNDAY, AUGUST 30, 2026 &nbsp;|&nbsp; TRI-COUNTY EDITION</div>
+        <div>SOUTH-CENTRAL IN: 78°F &nbsp; <a href="#" class="subscribe-btn">SUBSCRIBE</a></div>
+    </div>
+
     <header>
         <div class="masthead-title">Jennings County News</div>
-        <div class="masthead-sub">Local News &bull; Public Safety &bull; High School Sports</div>
     </header>
 
-    <div class="controls">
-        <input type="text" id="search-input" class="search-box" placeholder="Search news stories..." oninput="filterArticles()">
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
+    <div class="sub-header">
+        <div>"Serving Jennings, Bartholomew, and Jackson Counties"</div>
+        <div>VOL. I... No. 1</div>
+        <div>$2.50</div>
     </div>
 
     <nav>
-        <div class="nav-categories">
-            <button class="nav-btn active" onclick="filterCategory('all', this)">All Stories</button>
-            <button class="nav-btn" onclick="filterCategory('Jennings County', this)">Jennings County</button>
-            <button class="nav-btn" onclick="filterCategory('Bartholomew County', this)">Bartholomew County</button>
-            <button class="nav-btn" onclick="filterCategory('Jackson County', this)">Jackson County</button>
-            <button class="nav-btn" onclick="filterCategory('Public Safety', this)">Public Safety</button>
-            <button class="nav-btn" onclick="filterCategory('Sports', this)">Sports</button>
-        </div>
+        <a href="#">Jennings County</a>
+        <a href="#">Bartholomew County</a>
+        <a href="#">Jackson County</a>
+        <a href="#">High School Sports</a>
+        <a href="#">Public Safety</a>
+        <a href="#">Obituaries</a>
     </nav>
 
     <main>
-        <div class="section-header" id="current-category-label">Latest Headliness</div>
-        
-        <div id="article-grid" class="article-grid">
-            <!-- Articles will automatically populate here from GitHub -->
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+            <div class="side-story">
+                <div class="category">BARTHOLOMEW COUNTY • COLUMBUS</div>
+                <a href="#"><h2>Columbus Industrial Corridor Expands Manufacturing Output</h2></a>
+                <div class="byline">BY REGIONAL BUSINESS DESK</div>
+                <p class="story-text">Local economic leaders announced new investment plans along the State Road 46 corridor, bringing upgraded automated facilities and regional employment opportunities to Bartholomew County.</p>
+            </div>
+
+            <div class="side-story">
+                <div class="category">JACKSON COUNTY • SEYMOUR</div>
+                <a href="#"><h2>Seymour U.S. 50 Commercial District Sees Infrastructure Upgrades</h2></a>
+                <div class="byline">BY JACKSON BUREAU</div>
+                <p class="story-text">City planners approved road improvements aimed at easing traffic flow near major distribution centers along U.S. Route 50 in eastern Jackson County.</p>
+            </div>
         </div>
 
-        <div id="no-results">No news stories found matching your criteria.</div>
+        <!-- CENTER COLUMN (LEAD STORY) -->
+        <div class="col-center">
+            <div class="lead-story">
+                <div class="category">JENNINGS COUNTY • INFRASTRUCTURE</div>
+                <h1>Vernon Seeks $12.5 Million Funding Package for Infrastructure Overhaul</h1>
+                <div class="byline">BY JENNINGS COUNTY BUREAU</div>
+                <div class="photo-box">[ Photography: Historic Vernon Town Square ]</div>
+                <p class="story-text"><strong>VERNON</strong> — In a major push to revitalize historic corridors and upgrade essential municipal services, town leaders formally requested support from county commissioners to secure matching grants for a multi-million dollar regional revitalization project.</p>
+            </div>
+
+            <div class="side-story" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                <div class="category">NORTH VERNON PROGRESS</div>
+                <a href="#"><h2>North Vernon Redevelopment Commission Advances Urban Plans</h2></a>
+                <div class="byline">BY STAFF REPORTER</div>
+                <p class="story-text">City officials finalized steps regarding former manufacturing site acquisitions to establish new public space and support downtown growth near central rail lines.</p>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-right">
+            <div class="side-story">
+                <div class="category">HIGH SCHOOL ATHLETICS</div>
+                <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; border-bottom: 1px solid #121212; padding-bottom: 3px; margin-bottom: 8px;">CROSS COUNTRY</div>
+                <a href="#"><h2>Jennings Panthers, Columbus North & Seymour Compete at Invitational</h2></a>
+                <div class="byline">SPORTS DESK</div>
+                <p class="story-text">Regional runners posted strong early-season times across multi-county varsity meets over the weekend.</p>
+            </div>
+
+            <div class="side-story">
+                <div class="category">PUBLIC SAFETY & NOTICES</div>
+                <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; border-bottom: 1px solid #121212; padding-bottom: 3px; margin-bottom: 8px;">TRI-COUNTY ENFORCEMENT</div>
+                <a href="#"><h2>Sheriff Departments Coordinate School Zone Safety Patrols</h2></a>
+                <div class="byline">BY STAFF</div>
+                <p class="story-text">Targeted safety patrols will continue along key commuter routes connecting North Vernon, Columbus, and Seymour throughout the month.</p>
+            </div>
+        </div>
+
+        <!-- AUTOMATICALLY LOADED ARTICLES FROM GITHUB -->
+        <div id="dynamic-articles-container">
+            <div style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #121212; margin-bottom: 15px;">Recent Submissions</div>
+            <div id="dynamic-articles-list"></div>
+        </div>
     </main>
 
     <footer>
-        &copy; 2026 Jennings County News. Published via GitHub Pages. | <a href="admin/index.html" style="color: inherit;">Editor Portal</a>
+        <div><a href="admin/index.html">About Jennings County News</a> &bull; <a href="#">Contact Us</a> &bull; <a href="#">Regional Archives</a> &bull; <a href="#">Advertise</a></div>
+        <div style="margin-top: 8px;">&copy; 2026 Jennings County News. All rights reserved.</div>
     </footer>
 
     <script>
-        const REPO_OWNER = "Jennings-County-News";
-        const REPO_NAME = "jenningscountynews";
-        let articlesData = [];
-        let activeCategory = 'all';
-
-        // Fetch published articles automatically from GitHub API
-        async function loadArticles() {
-            const grid = document.getElementById("article-grid");
+        // Background fetch to append new published articles without breaking layout
+        async function fetchNewArticles() {
             try {
-                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/articles`);
-                if (!response.ok) throw new Error("No articles folder found yet.");
+                const response = await fetch('https://api.github.com/repos/Jennings-County-News/jenningscountynews/contents/articles');
+                if (!response.ok) return;
                 
                 const files = await response.json();
-                const htmlFiles = files.filter(f => f.name.endsWith('.html') || f.name.endsWith('.md'));
+                const articles = files.filter(f => f.name.endsWith('.html'));
 
-                if (htmlFiles.length === 0) {
-                    document.getElementById("no-results").style.display = "block";
-                    return;
+                if (articles.length > 0) {
+                    const container = document.getElementById('dynamic-articles-container');
+                    const list = document.getElementById('dynamic-articles-list');
+                    container.style.display = 'block';
+
+                    articles.forEach(file => {
+                        const title = file.name.replace(/\.html$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ');
+                        const item = document.createElement('div');
+                        item.className = 'side-story';
+                        item.innerHTML = `
+                            <div class="category">RECENT STORY</div>
+                            <a href="articles/${file.name}"><h2>${title.charAt(0).toUpperCase() + title.slice(1)}</h2></a>
+                            <p class="story-text">Click to read full published story on Jennings County News.</p>
+                        `;
+                        list.appendChild(item);
+                    });
                 }
-
-                articlesData = htmlFiles.map(file => {
-                    const nameWithoutExt = file.name.replace(/\.(html|md)$/, '');
-                    const titleFormatted = nameWithoutExt.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' ');
-                    
-                    return {
-                        filename: file.name,
-                        path: file.path,
-                        title: titleFormatted.charAt(0).toUpperCase() + titleFormatted.slice(1),
-                        category: file.name.toLowerCase().includes('sports') ? 'Sports' : 
-                                  file.name.toLowerCase().includes('safety') ? 'Public Safety' : 'Jennings County',
-                        url: `articles/${file.name}`
-                    };
-                });
-
-                renderArticles();
-            } catch (err) {
-                grid.innerHTML = `<p style="font-family:Arial; font-size:14px; color:#888;">No published articles found in <code>articles/</code> folder yet.</p>`;
+            } catch (e) {
+                // Keep default static layout intact if fetch fails
             }
         }
-
-        function renderArticles() {
-            const grid = document.getElementById("article-grid");
-            const search = document.getElementById("search-input").value.toLowerCase();
-            grid.innerHTML = "";
-
-            const filtered = articlesData.filter(art => {
-                const matchesCat = activeCategory === 'all' || art.category === activeCategory;
-                const matchesSearch = art.title.toLowerCase().includes(search);
-                return matchesCat && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                document.getElementById("no-results").style.display = "block";
-            } else {
-                document.getElementById("no-results").style.display = "none";
-                filtered.forEach(art => {
-                    const card = document.createElement("a");
-                    card.className = "article-card";
-                    card.href = art.url;
-                    card.innerHTML = `
-                        <div>
-                            <div class="article-cat">${art.category}</div>
-                            <div class="article-title">${art.title}</div>
-                        </div>
-                        <div class="article-date">Read Story &rarr;</div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-        }
-
-        function filterCategory(cat, btn) {
-            activeCategory = cat;
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById("current-category-label").textContent = cat === 'all' ? 'Latest Headlines' : cat;
-            renderArticles();
-        }
-
-        function filterArticles() {
-            renderArticles();
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle("dark-mode");
-            const isDark = document.body.classList.contains("dark-mode");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
-        }
-
-        // Preserve dark mode preference
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-        }
-
-        loadArticles();
+        fetchNewArticles();
     </script>
 </body>
 </html>
