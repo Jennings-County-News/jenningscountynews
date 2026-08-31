@@ -17,11 +17,11 @@
         .masthead-title { font-size: 56px; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; font-family: 'Times New Roman', serif; line-height: 1; }
         .sub-header { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 4px 0; border-top: 1px solid #121212; border-bottom: 3px double #121212; }
 
-        /* Interactive Controls */
+        /* Search & Controls */
         .interactive-bar { max-width: 1100px; margin: 10px auto 0; display: flex; gap: 10px; justify-content: space-between; align-items: center; }
         .search-box { flex-grow: 1; font-family: Arial, sans-serif; font-size: 12px; padding: 6px 10px; border: 1px solid #121212; outline: none; }
         
-        /* Interactive Navigation */
+        /* Navigation */
         nav { max-width: 1100px; margin: 10px auto 0; border-top: 1px solid #121212; border-bottom: 1px solid #121212; text-align: center; padding: 6px 0; }
         nav button { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; background: none; border: none; color: #121212; margin: 0 8px; cursor: pointer; padding: 2px 6px; }
         nav button:hover, nav button.active { color: #b20000; text-decoration: underline; }
@@ -36,21 +36,16 @@
         /* Article Formatting */
         .category { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 4px; }
         .byline { font-family: Arial, sans-serif; font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 8px; }
-        
-        /* Lead Story */
-        .lead-story h1 { font-size: 32px; line-height: 1.1; margin-bottom: 10px; font-weight: bold; }
-        .photo-box { background: #f0f0f0; border: 1px solid #ddd; height: 220px; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 12px; color: #777; margin-bottom: 15px; }
         .story-text { font-size: 14px; line-height: 1.5; color: #222; text-align: justify; margin-bottom: 15px; }
         
-        /* Side Stories */
-        .side-story { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #ddd; transition: opacity 0.2s; }
+        .side-story { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #ddd; }
         .side-story:last-child { border-bottom: none; }
         .side-story h2 { font-size: 18px; line-height: 1.2; margin-bottom: 6px; }
         .side-story a { text-decoration: none; color: inherit; }
         .side-story a:hover h2 { color: #b20000; }
 
-        /* Hidden Class for Search/Filter */
         .hidden { display: none !important; }
+        #no-articles-msg { font-family: Arial, sans-serif; font-size: 13px; color: #777; text-align: center; padding: 20px 0; }
 
         footer { max-width: 1100px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
         footer a { color: inherit; text-decoration: none; }
@@ -73,12 +68,12 @@
         <div>$2.50</div>
     </div>
 
-    <!-- SEARCH & CONTROLS -->
+    <!-- SEARCH BAR -->
     <div class="interactive-bar">
-        <input type="text" id="news-search" class="search-box" placeholder="Search headlines on front page..." oninput="filterStories()">
+        <input type="text" id="news-search" class="search-box" placeholder="Search front page headlines..." oninput="filterStories()">
     </div>
 
-    <!-- INTERACTIVE NAVIGATION -->
+    <!-- CATEGORY NAVIGATION -->
     <nav>
         <button class="active" onclick="filterCategory('all', this)">All Desk Sections</button>
         <button onclick="filterCategory('jennings', this)">Jennings County</button>
@@ -88,61 +83,14 @@
         <button onclick="filterCategory('safety', this)">Public Safety</button>
     </nav>
 
-    <main>
-        <!-- LEFT COLUMN -->
-        <div class="col-left">
-            <div class="side-story" data-category="bartholomew">
-                <div class="category">BARTHOLOMEW COUNTY • COLUMBUS</div>
-                <a href="#"><h2>Columbus Industrial Corridor Expands Manufacturing Output</h2></a>
-                <div class="byline">BY REGIONAL BUSINESS DESK</div>
-                <p class="story-text">Local economic leaders announced new investment plans along the State Road 46 corridor, bringing upgraded automated facilities and regional employment opportunities to Bartholomew County.</p>
-            </div>
-
-            <div class="side-story" data-category="jackson">
-                <div class="category">JACKSON COUNTY • SEYMOUR</div>
-                <a href="#"><h2>Seymour U.S. 50 Commercial District Sees Infrastructure Upgrades</h2></a>
-                <div class="byline">BY JACKSON BUREAU</div>
-                <p class="story-text">City planners approved road improvements aimed at easing traffic flow near major distribution centers along U.S. Route 50 in eastern Jackson County.</p>
-            </div>
-        </div>
-
-        <!-- CENTER COLUMN (LEAD STORY) -->
-        <div class="col-center">
-            <div class="lead-story side-story" data-category="jennings">
-                <div class="category">JENNINGS COUNTY • INFRASTRUCTURE</div>
-                <a href="#"><h1>Vernon Seeks $12.5 Million Funding Package for Infrastructure Overhaul</h1></a>
-                <div class="byline">BY JENNINGS COUNTY BUREAU</div>
-                <div class="photo-box">[ Photography: Historic Vernon Town Square ]</div>
-                <p class="story-text"><strong>VERNON</strong> — In a major push to revitalize historic corridors and upgrade essential municipal services, town leaders formally requested support from county commissioners to secure matching grants for a multi-million dollar regional revitalization project.</p>
-            </div>
-
-            <div class="side-story" data-category="jennings" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
-                <div class="category">NORTH VERNON PROGRESS</div>
-                <a href="#"><h2>North Vernon Redevelopment Commission Advances Urban Plans</h2></a>
-                <div class="byline">BY STAFF REPORTER</div>
-                <p class="story-text">City officials finalized steps regarding former manufacturing site acquisitions to establish new public space and support downtown growth near central rail lines.</p>
-            </div>
-        </div>
-
-        <!-- RIGHT COLUMN -->
-        <div class="col-right">
-            <div class="side-story" data-category="sports">
-                <div class="category">HIGH SCHOOL ATHLETICS</div>
-                <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; border-bottom: 1px solid #121212; padding-bottom: 3px; margin-bottom: 8px;">CROSS COUNTRY</div>
-                <a href="#"><h2>Jennings Panthers, Columbus North & Seymour Compete at Invitational</h2></a>
-                <div class="byline">SPORTS DESK</div>
-                <p class="story-text">Regional runners posted strong early-season times across multi-county varsity meets over the weekend.</p>
-            </div>
-
-            <div class="side-story" data-category="safety">
-                <div class="category">PUBLIC SAFETY & NOTICES</div>
-                <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; border-bottom: 1px solid #121212; padding-bottom: 3px; margin-bottom: 8px;">TRI-COUNTY ENFORCEMENT</div>
-                <a href="#"><h2>Sheriff Departments Coordinate School Zone Safety Patrols</h2></a>
-                <div class="byline">BY STAFF</div>
-                <p class="story-text">Targeted safety patrols will continue along key commuter routes connecting North Vernon, Columbus, and Seymour throughout the month.</p>
-            </div>
-        </div>
+    <main id="news-grid">
+        <!-- Articles dynamically render into these 3 columns -->
+        <div class="col-left" id="col-left"></div>
+        <div class="col-center" id="col-center"></div>
+        <div class="col-right" id="col-right"></div>
     </main>
+
+    <div id="no-articles-msg" style="display: none;">No articles match your selection.</div>
 
     <footer>
         <div><a href="admin/index.html">About Jennings County News</a> &bull; <a href="#">Contact Us</a> &bull; <a href="#">Regional Archives</a> &bull; <a href="#">Advertise</a></div>
@@ -150,7 +98,79 @@
     </footer>
 
     <script>
+        const REPO_OWNER = "Jennings-County-News";
+        const REPO_NAME = "jenningscountynews";
         let currentCat = 'all';
+
+        async function loadFolderArticles() {
+            try {
+                // Read all files in the articles/ folder directly from GitHub
+                const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/articles`);
+                if (!res.ok) throw new Error("Folder not found");
+                
+                const files = await res.json();
+                const htmlFiles = files.filter(f => f.name.endsWith('.html'));
+
+                if (htmlFiles.length === 0) {
+                    document.getElementById('col-center').innerHTML = `<p style="font-family:Arial; font-size:13px; color:#777; text-align:center;">No <code>.html</code> files found in <code>articles/</code> folder.</p>`;
+                    return;
+                }
+
+                const colLeft = document.getElementById('col-left');
+                const colCenter = document.getElementById('col-center');
+                const colRight = document.getElementById('col-right');
+
+                colLeft.innerHTML = '';
+                colCenter.innerHTML = '';
+                colRight.innerHTML = '';
+
+                htmlFiles.forEach((file, index) => {
+                    // Extract clean title from filename
+                    const rawName = file.name.replace(/\.html$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+                    const cleanTitle = rawName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+                    // Determine category from filename
+                    let catName = "Jennings County";
+                    let catCode = "jennings";
+
+                    const nameLower = file.name.toLowerCase();
+                    if (nameLower.includes('bartholomew')) { catName = "Bartholomew County"; catCode = "bartholomew"; }
+                    else if (nameLower.includes('jackson')) { catName = "Jackson County"; catCode = "jackson"; }
+                    else if (nameLower.includes('sports')) { catName = "High School Sports"; catCode = "sports"; }
+                    else if (nameLower.includes('safety')) { catName = "Public Safety"; catCode = "safety"; }
+
+                    // Create story element
+                    const storyDiv = document.createElement('div');
+                    storyDiv.className = 'side-story';
+                    storyDiv.setAttribute('data-category', catCode);
+
+                    storyDiv.innerHTML = `
+                        <div class="category">${catName}</div>
+                        <a href="articles/${file.name}">
+                            <h2>${cleanTitle}</h2>
+                        </a>
+                        <div class="byline">BY STAFF REPORTER</div>
+                        <p class="story-text">Click headline to read full story on Jennings County News.</p>
+                    `;
+
+                    // Distribute articles across the 3 columns
+                    if (index === 0) {
+                        // First article becomes the lead headline in center column
+                        storyDiv.querySelector('h2').style.fontSize = '28px';
+                        colCenter.appendChild(storyDiv);
+                    } else if (index % 3 === 1) {
+                        colLeft.appendChild(storyDiv);
+                    } else if (index % 3 === 2) {
+                        colRight.appendChild(storyDiv);
+                    } else {
+                        colCenter.appendChild(storyDiv);
+                    }
+                });
+
+            } catch (err) {
+                document.getElementById('col-center').innerHTML = `<p style="font-family:Arial; font-size:13px; color:#777; text-align:center;">Unable to fetch articles automatically.</p>`;
+            }
+        }
 
         function filterCategory(cat, btn) {
             currentCat = cat;
@@ -162,6 +182,7 @@
         function filterStories() {
             const query = document.getElementById('news-search').value.toLowerCase();
             const stories = document.querySelectorAll('.side-story');
+            let visibleCount = 0;
 
             stories.forEach(story => {
                 const storyCat = story.getAttribute('data-category');
@@ -172,11 +193,17 @@
 
                 if (matchesCat && matchesSearch) {
                     story.classList.remove('hidden');
+                    visibleCount++;
                 } else {
                     story.classList.add('hidden');
                 }
             });
+
+            document.getElementById('no-articles-msg').style.display = (visibleCount === 0 && stories.length > 0) ? 'block' : 'none';
         }
+
+        // Run auto-fetch on load
+        loadFolderArticles();
     </script>
 </body>
 </html>
