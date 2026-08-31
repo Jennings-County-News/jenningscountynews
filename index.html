@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jennings County News</title>
+    <title>Jennings County News | Regional Coverage</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', 'Times New Roman', serif; color: #121212; background-color: #fff; padding: 0 20px; max-width: 1280px; margin: 0 auto; }
@@ -32,7 +32,6 @@
         .byline { font-family: Arial, sans-serif; font-size: 10px; color: #666; margin-bottom: 8px; text-transform: uppercase; }
         .summary { font-size: 13px; line-height: 1.4; color: #333; }
         .media-placeholder { width: 100%; height: 240px; background-color: #efefef; display: flex; align-items: center; justify-content: center; color: #777; font-family: Arial, sans-serif; font-size: 12px; border: 1px solid #ddd; margin: 10px 0; }
-        .caption { font-family: Arial, sans-serif; font-size: 10px; color: #666; margin-top: 4px; line-height: 1.3; }
         .sidebar-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; border-top: 1px solid #121212; border-bottom: 1px solid #121212; padding: 3px 0; margin-bottom: 12px; }
         footer { margin-top: 20px; padding: 20px 0; border-top: 1px solid #121212; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
         footer ul { list-style: none; display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; }
@@ -44,10 +43,10 @@
     <div class="utility-bar">
         <div class="utility-left">
             <span id="current-date"></span>
-            <span>Today’s Paper</span>
+            <span>Tri-County Edition</span>
         </div>
         <div class="utility-right">
-            <span>Vernon, IN: 78°F</span>
+            <span>South-Central IN: 78°F</span>
             <button>SUBSCRIBE</button>
         </div>
     </div>
@@ -55,7 +54,7 @@
     <header>
         <h1 class="masthead-title">Jennings County News</h1>
         <div class="sub-header">
-            <span>"Serving North Vernon, Vernon, and Surrounding Communities"</span>
+            <span>"Serving Jennings, Bartholomew, and Jackson Counties"</span>
             <span>VOL. I... No. 1</span>
             <span>$2.50</span>
         </div>
@@ -63,53 +62,66 @@
 
     <nav>
         <ul>
-            <li><a href="#">North Vernon</a></li>
-            <li><a href="#">Vernon</a></li>
-            <li><a href="#">County Government</a></li>
+            <li><a href="#">Jennings County</a></li>
+            <li><a href="#">Bartholomew County</a></li>
+            <li><a href="#">Jackson County</a></li>
             <li><a href="#">High School Sports</a></li>
-            <li><a href="#">Community</a></li>
+            <li><a href="#">Public Safety</a></li>
             <li><a href="#">Obituaries</a></li>
         </ul>
     </nav>
 
     <div class="main-container">
+        <!-- Column 1: Regional Highlights (Bartholomew & Jackson) -->
         <div class="column column-left">
             <article class="story">
-                <div class="kicker">County Government</div>
-                <h3 class="headline-secondary">Commissioners Award Reassessment Bid to Tyler Tech</h3>
-                <div class="byline">By Local News Desk</div>
-                <p class="summary">Following extensive attorney review at the Annex Building, Commissioners approved moving forward with the lowest responsible bid to handle upcoming property reassessments across Jennings County.</p>
+                <div class="kicker">Bartholomew County • Columbus</div>
+                <h3 class="headline-secondary">Columbus Industrial Corridor Expands Manufacturing Output</h3>
+                <div class="byline">By Regional Business Desk</div>
+                <p class="summary">Local economic leaders announced new investment plans along the State Road 46 corridor, bringing upgraded automated facilities and regional employment opportunities to Bartholomew County.</p>
             </article>
+
             <article class="story">
-                <div class="kicker">Judicial Reform</div>
-                <h3 class="headline-secondary">Courts Propose County Referee Position to Offset Magistrate Loss</h3>
-                <div class="byline">By Civic Affairs Reporter</div>
-                <p class="summary">With state legislation phasing out local magistrate slots, Jennings County judges presented a plan to secure grant funding for a local court referee to prevent severe case backlogs.</p>
+                <div class="kicker">Jackson County • Seymour</div>
+                <h3 class="headline-secondary">Seymour U.S. 50 Commercial District Sees Infrastructure Upgrades</h3>
+                <div class="byline">By Jackson Bureau</div>
+                <p class="summary">City planners approved road improvements aimed at easing traffic flow near major distribution centers along U.S. Route 50 in eastern Jackson County.</p>
             </article>
         </div>
 
+        <!-- Column 2: Main Story (Jennings County / Vernon) -->
         <div class="column column-center">
             <article class="story">
-                <div class="kicker">Infrastructure & Planning</div>
+                <div class="kicker">Jennings County • Infrastructure</div>
                 <h2 class="headline-lead">Vernon Seeks $12.5 Million Funding Package for Infrastructure Overhaul</h2>
                 <div class="byline">By Jennings County Bureau</div>
                 <div class="media-placeholder">[ Photography: Historic Vernon Town Square ]</div>
-                <p class="summary">VERNON — In a bid to revitalize key historical corridors and update municipal infrastructure, town leadership formally requested assistance from the Jennings County Redevelopment Commission this week to secure competitive state and federal grants.</p>
+                <p class="summary">VERNON — In a major push to revitalize historic corridors and upgrade essential municipal services, town leaders formally requested support from county commissioners to secure matching grants for a multi-million dollar regional revitalization project.</p>
+            </article>
+
+            <article class="story">
+                <div class="kicker">North Vernon Progress</div>
+                <h3 class="headline-secondary">North Vernon Redevelopment Commission Advances Urban Plans</h3>
+                <div class="byline">By Staff Reporter</div>
+                <p class="summary">City officials finalized steps regarding former manufacturing site acquisitions to establish new public space and support downtown growth near central rail lines.</p>
             </article>
         </div>
 
+        <!-- Column 3: Regional Sports & Briefs -->
         <div class="column column-right">
-            <div class="sidebar-title">Opinion & Commentary</div>
+            <div class="sidebar-title">High School Athletics</div>
             <article class="story">
-                <div class="byline">EDITORIAL BOARD</div>
-                <h3 class="headline-small">Balancing Preservation and Growth in Historic Vernon</h3>
-                <p class="summary">As infrastructure demands mount across our small towns, matching grants represent the smartest path forward for local tax dollars...</p>
+                <div class="kicker">Cross Country</div>
+                <h3 class="headline-small">Jennings Panthers, Columbus North & Seymour Compete at Invitational</h3>
+                <div class="byline">Sports Desk</div>
+                <p class="summary">Regional runners posted strong early-season times across multi-county varsity meets over the weekend.</p>
             </article>
-            <div class="sidebar-title">Public Safety</div>
+
+            <div class="sidebar-title">Public Safety & Notices</div>
             <article class="story">
-                <div class="kicker">Traffic Safety</div>
-                <h3 class="headline-small">NVPD Initiates School Zone Speed Enforcement</h3>
-                <p class="summary">Targeted patrols funded by local safety grants will be stationed around school routes throughout North Vernon through the remainder of the month.</p>
+                <div class="kicker">Tri-County Enforcement</div>
+                <h3 class="headline-small">Sheriff Departments Coordinate School Zone Safety Patrols</h3>
+                <p class="summary">Targeted safety patrols will continue along key commuter routes connecting North Vernon, Columbus, and Seymour throughout the month.</p>
             </article>
         </div>
     </div>
@@ -118,7 +130,7 @@
         <ul>
             <li><a href="#">About Jennings County News</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Archives</a></li>
+            <li><a href="#">Regional Archives</a></li>
             <li><a href="#">Advertise</a></li>
         </ul>
         <p>&copy; 2026 Jennings County News. All rights reserved.</p>
