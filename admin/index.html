@@ -3,9 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jennings County News - Content Manager</title>
+  <title>Jennings County News - Editor Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+    }
+    h2 { font-size: 20px; margin-bottom: 20px; color: #121212; }
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background-color: #333; }
+    .error { color: #d9534f; font-size: 12px; margin-top: 10px; display: none; }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <div id="login-screen" class="login-box">
+    <h2>Editor Portal Login</h2>
+    <input type="password" id="password-input" placeholder="Enter Editor Password" />
+    <button onclick="checkPassword()">Log In</button>
+    <div id="error-msg" class="error">Incorrect password. Please try again.</div>
+  </div>
+
+  <div id="cms-container" style="display:none;">
+    <!-- Decap CMS loads here after correct password -->
+  </div>
+
+  <script>
+    // Set your password here
+    const SECRET_PASSWORD = "Jcn-News$2026!Vernon";
+
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      if (input === SECRET_PASSWORD) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("cms-container").style.display = "block";
+        loadCMS();
+      } else {
+        document.getElementById("error-msg").style.display = "block";
+      }
+    }
+
+    function loadCMS() {
+      const script = document.createElement("script");
+      script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+      document.head.appendChild(script);
+    }
+  </script>
+
 </body>
 </html>
