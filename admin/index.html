@@ -1,87 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jennings County News - Editor Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .login-box {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 350px;
-      width: 100%;
-    }
-    h2 { font-size: 20px; margin-bottom: 20px; color: #121212; }
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover { background-color: #333; }
-    .error { color: #d9534f; font-size: 12px; margin-top: 10px; display: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennings County News - Editor Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        
+        /* Login Card */
+        .card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: -0.5px; }
+        .card p { font-size: 13px; color: #666; margin-bottom: 20px; }
+        input[type="password"], input[type="text"], select, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-family: inherit; }
+        textarea { height: 180px; resize: vertical; }
+        button { width: 100%; padding: 11px; background-color: #000; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #333; }
+        .error-msg { color: #d9534f; font-size: 13px; margin-top: 10px; display: none; }
+
+        /* Dashboard View */
+        #editor-portal { display: none; width: 100%; max-width: 800px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .portal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #121212; padding-bottom: 10px; margin-bottom: 20px; }
+        .portal-header h1 { font-size: 20px; text-transform: uppercase; }
+        .logout-btn { width: auto; padding: 6px 12px; font-size: 12px; background-color: #d9534f; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        
+        .output-box { background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-top: 20px; display: none; text-align: left; }
+        .output-box pre { white-space: pre-wrap; font-size: 12px; font-family: monospace; background: #eee; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; margin-top: 10px; }
+    </style>
 </head>
 <body>
 
-  <div id="login-screen" class="login-box">
-    <h2>Editor Portal Login</h2>
-    <input type="password" id="password-input" placeholder="Enter Editor Password" />
-    <button onclick="checkPassword()">Log In</button>
-    <div id="error-msg" class="error">Incorrect password. Please try again.</div>
-  </div>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="card">
+        <h2>Jennings County News</h2>
+        <p>Editor & Reporter Portal</p>
+        <input type="password" id="password-input" placeholder="Enter Portal Password" />
+        <button onclick="attemptLogin()">Log In to Portal</button>
+        <div id="error-msg" class="error-msg">Incorrect password. Please try again.</div>
+    </div>
 
-  <div id="cms-container" style="display:none;">
-    <!-- Decap CMS loads here after correct password -->
-  </div>
+    <!-- EDITOR PORTAL SCREEN -->
+    <div id="editor-portal">
+        <div class="portal-header">
+            <h1>News Article Publisher</h1>
+            <button class="logout-btn" onclick="logout()">Log Out</button>
+        </div>
 
-  <script>
-    // Set your password here
-    const SECRET_PASSWORD = "Jcn-News$2026!Vernon";
+        <div class="form-group">
+            <label for="article-title">Article Headline</label>
+            <input type="text" id="article-title" placeholder="e.g., Vernon Town Council Approves Budget Updates">
+        </div>
 
-    function checkPassword() {
-      const input = document.getElementById("password-input").value;
-      if (input === SECRET_PASSWORD) {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("cms-container").style.display = "block";
-        loadCMS();
-      } else {
-        document.getElementById("error-msg").style.display = "block";
-      }
-    }
+        <div class="form-group">
+            <label for="article-category">County / Desk Category</label>
+            <select id="article-category">
+                <option value="Jennings County">Jennings County</option>
+                <option value="Bartholomew County">Bartholomew County</option>
+                <option value="Jackson County">Jackson County</option>
+                <option value="High School Sports">High School Sports</option>
+                <option value="Public Safety">Public Safety</option>
+            </select>
+        </div>
 
-    function loadCMS() {
-      const script = document.createElement("script");
-      script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
-      document.head.appendChild(script);
-    }
-  </script>
+        <div class="form-group">
+            <label for="article-author">Author Byline</label>
+            <input type="text" id="article-author" placeholder="e.g., By Staff Reporter">
+        </div>
 
+        <div class="form-group">
+            <label for="article-body">Story Content</label>
+            <textarea id="article-body" placeholder="Write or paste your article text here..."></textarea>
+        </div>
+
+        <button onclick="generateArticle()">Generate Article Code</button>
+
+        <div id="output-area" class="output-box">
+            <strong>Article Generated Successfully!</strong>
+            <p style="font-size:12px; margin-top:5px; color:#555;">Create a new file on GitHub inside your repository and paste the generated code below:</p>
+            <pre id="code-output"></pre>
+        </div>
+    </div>
+
+    <script>
+        // Password for access
+        const PORTAL_PASSWORD = "Jcn-News$2026!Vernon";
+
+        function attemptLogin() {
+            const val = document.getElementById("password-input").value;
+            if (val === PORTAL_PASSWORD) {
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("editor-portal").style.display = "block";
+                document.getElementById("error-msg").style.display = "none";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+
+        function logout() {
+            document.getElementById("password-input").value = "";
+            document.getElementById("editor-portal").style.display = "none";
+            document.getElementById("login-screen").style.display = "block";
+            document.getElementById("output-area").style.display = "none";
+        }
+
+        function generateArticle() {
+            const title = document.getElementById("article-title").value || "Untitled Story";
+            const category = document.getElementById("article-category").value;
+            const author = document.getElementById("article-author").value || "By Regional Staff";
+            const body = document.getElementById("article-body").value || "";
+
+            const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title} | Jennings County News</title>
+    <style>
+        body { font-family: 'Georgia', serif; color: #121212; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; }
+        h1 { font-size: 32px; margin: 10px 0; }
+        .byline { font-family: Arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .back-link { font-family: Arial, sans-serif; font-size: 12px; text-decoration: none; color: #000; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">&larr; Return to Homepage</a>
+    <div class="category">${category}</div>
+    <h1>${title}</h1>
+    <div class="byline">${author}</div>
+    <div class="content">
+        <p>${body.replace(/\n/g, '</p><p>')}</p>
+    </div>
+</body>
+</html>`;
+
+            document.getElementById("code-output").textContent = htmlContent;
+            document.getElementById("output-area").style.display = "block";
+        }
+    </script>
 </body>
 </html>
