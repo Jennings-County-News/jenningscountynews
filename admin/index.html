@@ -3,142 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jennings County News - Editor Portal</title>
+    <title>Editor Portal | Jennings County News</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        
-        /* Login Card */
-        .card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
-        .card h2 { font-size: 22px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: -0.5px; }
-        .card p { font-size: 13px; color: #666; margin-bottom: 20px; }
-        input[type="password"], input[type="text"], select, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-family: inherit; }
-        textarea { height: 180px; resize: vertical; }
-        button { width: 100%; padding: 11px; background-color: #000; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #333; }
-        .error-msg { color: #d9534f; font-size: 13px; margin-top: 10px; display: none; }
+        body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px 40px; }
 
-        /* Dashboard View */
-        #editor-portal { display: none; width: 100%; max-width: 800px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .portal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #121212; padding-bottom: 10px; margin-bottom: 20px; }
-        .portal-header h1 { font-size: 20px; text-transform: uppercase; }
-        .logout-btn { width: auto; padding: 6px 12px; font-size: 12px; background-color: #d9534f; }
-        .form-group { text-align: left; margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        /* Top Bar & Masthead */
+        .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
+        .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
+        .back-link:hover { color: #b20000; }
+
+        header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
+        .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
+
+        /* Article Workspace */
+        article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
-        .output-box { background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-top: 20px; display: none; text-align: left; }
-        .output-box pre { white-space: pre-wrap; font-size: 12px; font-family: monospace; background: #eee; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; margin-top: 10px; }
+        /* Interactive Input Styling matched to Newspaper Layout */
+        .admin-control-bar { max-width: 750px; margin: 20px auto; background: #f0f0f0; border: 1px solid #121212; padding: 15px; font-family: Arial, sans-serif; font-size: 12px; }
+        .admin-control-bar label { font-weight: bold; display: block; margin-bottom: 5px; text-transform: uppercase; }
+        .admin-control-bar select, .admin-control-bar input[type="file"] { margin-bottom: 15px; font-size: 12px; }
+
+        .edit-category { width: 100%; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+        .edit-headline { width: 100%; font-family: 'Georgia', serif; font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+        .edit-subheadline { width: 100%; font-family: 'Georgia', serif; font-size: 18px; color: #444; font-style: italic; margin-bottom: 15px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+        
+        .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .edit-byline { font-family: Arial, sans-serif; font-size: 11px; border: 1px dashed #bbb; padding: 2px 5px; text-transform: uppercase; }
+
+        /* Image Display Box */
+        .article-image { margin-bottom: 25px; text-align: center; }
+        .article-image img { width: 100%; max-height: 450px; object-fit: cover; border: 1px solid #ddd; display: none; }
+        .photo-placeholder { background: #eee; height: 250px; display: flex; align-items: center; justify-content: center; color: #777; font-family: Arial, sans-serif; font-size: 12px; border: 1px dashed #aaa; }
+        .edit-caption { width: 100%; font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+
+        /* Content Editor */
+        .edit-body { width: 100%; min-height: 250px; font-family: 'Georgia', serif; font-size: 17px; line-height: 1.6; color: #1a1a1a; padding: 10px; border: 1px dashed #bbb; background: transparent; }
+
+        /* Export Bar */
+        .action-bar { max-width: 750px; margin: 20px auto; text-align: center; }
+        .btn-action { background: #121212; color: #fff; border: none; padding: 12px 24px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+        .btn-action:hover { background: #b20000; }
+
+        footer { max-width: 900px; margin: 30px auto 0; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN SCREEN -->
-    <div id="login-screen" class="card">
-        <h2>Jennings County News</h2>
-        <p>Editor & Reporter Portal</p>
-        <input type="password" id="password-input" placeholder="Enter Portal Password" />
-        <button onclick="attemptLogin()">Log In to Portal</button>
-        <div id="error-msg" class="error-msg">Incorrect password. Please try again.</div>
+    <div class="utility-bar">
+        <a href="../index.html" class="back-link">&larr; Return to Front Page</a>
+        <div>EDITOR PORTAL</div>
     </div>
 
-    <!-- EDITOR PORTAL SCREEN -->
-    <div id="editor-portal">
-        <div class="portal-header">
-            <h1>News Article Publisher</h1>
-            <button class="logout-btn" onclick="logout()">Log Out</button>
-        </div>
+    <header>
+        <a href="../index.html" class="masthead-title">Jennings County News</a>
+    </header>
 
-        <div class="form-group">
-            <label for="article-title">Article Headline</label>
-            <input type="text" id="article-title" placeholder="e.g., Vernon Town Council Approves Budget Updates">
-        </div>
+    <!-- SETTINGS & IMAGE UPLOAD BAR -->
+    <div class="admin-control-bar">
+        <label for="visibility-select">Article Visibility:</label>
+        <select id="visibility-select" style="padding: 4px; margin-bottom: 15px;">
+            <option value="true">Public (Visible to everyone)</option>
+            <option value="false">Private (Hidden from public)</option>
+        </select>
 
-        <div class="form-group">
-            <label for="article-category">County / Desk Category</label>
-            <select id="article-category">
-                <option value="Jennings County">Jennings County</option>
-                <option value="Bartholomew County">Bartholomew County</option>
-                <option value="Jackson County">Jackson County</option>
-                <option value="High School Sports">High School Sports</option>
-                <option value="Public Safety">Public Safety</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="article-author">Author Byline</label>
-            <input type="text" id="article-author" placeholder="e.g., By Staff Reporter">
-        </div>
-
-        <div class="form-group">
-            <label for="article-body">Story Content</label>
-            <textarea id="article-body" placeholder="Write or paste your article text here..."></textarea>
-        </div>
-
-        <button onclick="generateArticle()">Generate Article Code</button>
-
-        <div id="output-area" class="output-box">
-            <strong>Article Generated Successfully!</strong>
-            <p style="font-size:12px; margin-top:5px; color:#555;">Create a new file on GitHub inside your repository and paste the generated code below:</p>
-            <pre id="code-output"></pre>
-        </div>
+        <label for="image-input">Upload Story Image:</label>
+        <input type="file" id="image-input" accept="image/*" onchange="previewUploadedImage(event)">
     </div>
+
+    <!-- LIVE NEWSPAPER EDITING CANVAS -->
+    <article>
+        <input type="text" id="cat-field" class="edit-category" value="JENNINGS COUNTY • PUBLIC SAFETY">
+        <input type="text" id="title-field" class="edit-headline" value="Headline of the Article Goes Here" oninput="updateSlug()">
+        <input type="text" id="sub-field" class="edit-subheadline" value="An optional subheadline or quick summary of the news story goes here.">
+        
+        <div class="byline-bar">
+            <div>BY <input type="text" id="author-field" class="edit-byline" value="Staff Reporter"></div>
+            <div>PUBLISHED: <span id="current-date">August 30, 2026</span></div>
+        </div>
+
+        <!-- IMAGE DISPLAY CONTAINER -->
+        <div class="article-image">
+            <div id="photo-box" class="photo-placeholder">[ Upload photo above to embed image ]</div>
+            <img id="image-preview" src="" alt="Story Image">
+            <input type="text" id="caption-field" class="edit-caption" value="Caption explaining the photo and crediting the photographer.">
+        </div>
+
+        <textarea id="body-field" class="edit-body" placeholder="Write story paragraphs here...">NORTH VERNON — The opening paragraph of your article goes here.
+
+Second paragraph goes here. Add details, quotes, and background information regarding the event or notice.
+
+Third paragraph with additional context and closing statements.</textarea>
+    </article>
+
+    <div class="action-bar">
+        <button class="btn-action" onclick="generateAndDownloadHTML()">Download Article File (.html)</button>
+    </div>
+
+    <footer>
+        &copy; 2026 Jennings County News Editor System.
+    </footer>
 
     <script>
-        // Password for access
-        const PORTAL_PASSWORD = "Jcn-News$2026!Vernon";
+        let uploadedImageBase64 = "";
 
-        function attemptLogin() {
-            const val = document.getElementById("password-input").value;
-            if (val === PORTAL_PASSWORD) {
-                document.getElementById("login-screen").style.display = "none";
-                document.getElementById("editor-portal").style.display = "block";
-                document.getElementById("error-msg").style.display = "none";
-            } else {
-                document.getElementById("error-msg").style.display = "block";
+        // Convert uploaded image to Base64 data string so it embeds directly inside the file
+        function previewUploadedImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageBase64 = e.target.result;
+                    const img = document.getElementById('image-preview');
+                    const box = document.getElementById('photo-box');
+                    img.src = uploadedImageBase64;
+                    img.style.display = 'block';
+                    box.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
             }
         }
 
-        function logout() {
-            document.getElementById("password-input").value = "";
-            document.getElementById("editor-portal").style.display = "none";
-            document.getElementById("login-screen").style.display = "block";
-            document.getElementById("output-area").style.display = "none";
-        }
+        function generateAndDownloadHTML() {
+            const isPublic = document.getElementById('visibility-select').value;
+            const category = document.getElementById('cat-field').value;
+            const title = document.getElementById('title-field').value;
+            const subtitle = document.getElementById('sub-field').value;
+            const author = document.getElementById('author-field').value;
+            const caption = document.getElementById('caption-field').value;
+            
+            // Format body paragraphs
+            const rawBody = document.getElementById('body-field').value;
+            const paragraphs = rawBody.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n            ');
 
-        function generateArticle() {
-            const title = document.getElementById("article-title").value || "Untitled Story";
-            const category = document.getElementById("article-category").value;
-            const author = document.getElementById("article-author").value || "By Regional Staff";
-            const body = document.getElementById("article-body").value || "";
+            // Image tag handling
+            let imageHTML = `<div style="background:#eee; height:250px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>`;
+            if (uploadedImageBase64) {
+                imageHTML = `<img src="${uploadedImageBase64}" alt="${title}">`;
+            }
 
-            const htmlContent = `<!DOCTYPE html>
+            const fullPageHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} | Jennings County News</title>
     <style>
-        body { font-family: 'Georgia', serif; color: #121212; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; }
-        h1 { font-size: 32px; margin: 10px 0; }
-        .byline { font-family: Arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-        .back-link { font-family: Arial, sans-serif; font-size: 12px; text-decoration: none; color: #000; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px; }
+
+        .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
+        .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
+        .back-link:hover { color: #b20000; }
+
+        header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
+        .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
+
+        article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
+        
+        .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        h1.article-headline { font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; }
+        .subheadline { font-size: 18px; color: #444; line-height: 1.3; margin-bottom: 15px; font-style: italic; }
+        
+        .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; }
+        
+        .article-image { margin-bottom: 25px; }
+        .article-image img { width: 100%; height: auto; border: 1px solid #ddd; }
+        .image-caption { font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; }
+
+        .article-body p { font-size: 17px; margin-bottom: 18px; color: #1a1a1a; text-align: justify; }
+        .article-body p:first-of-type::first-letter { font-size: 42px; float: left; line-height: 0.8; padding-right: 8px; font-weight: bold; font-family: 'Times New Roman', serif; }
+
+        .access-denied { max-width: 600px; margin: 80px auto; text-align: center; font-family: Arial, sans-serif; display: none; }
+        .access-denied h2 { font-size: 28px; margin-bottom: 10px; color: #b20000; }
+        .access-denied p { font-size: 14px; color: #555; margin-bottom: 20px; }
+
+        footer { max-width: 900px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer a { color: inherit; text-decoration: none; }
     </style>
 </head>
 <body>
-    <a href="../index.html" class="back-link">&larr; Return to Homepage</a>
-    <div class="category">${category}</div>
-    <h1>${title}</h1>
-    <div class="byline">${author}</div>
-    <div class="content">
-        <p>${body.replace(/\n/g, '</p><p>')}</p>
+
+    <script>
+        const IS_PUBLIC = ${isPublic};
+    <\/script>
+
+    <div id="article-content">
+        <div class="utility-bar">
+            <a href="../index.html" class="back-link">&larr; Return to Front Page</a>
+            <div>JENNINGS COUNTY NEWS</div>
+        </div>
+
+        <header>
+            <a href="../index.html" class="masthead-title">Jennings County News</a>
+        </header>
+
+        <article>
+            <div class="category">${category}</div>
+            <h1 class="article-headline">${title}</h1>
+            <div class="subheadline">${subtitle}</div>
+            
+            <div class="byline-bar">
+                <div>By <strong>${author}</strong></div>
+                <div>Published: August 30, 2026</div>
+            </div>
+
+            <div class="article-image">
+                ${imageHTML}
+                <div class="image-caption">${caption}</div>
+            </div>
+
+            <div class="article-body">
+                ${paragraphs}
+            </div>
+        </article>
+
+        <footer>
+            <div><a href="../index.html">Front Page</a> &bull; <a href="../admin/index.html">Editor Portal</a></div>
+            <div style="margin-top: 8px;">&copy; 2026 Jennings County News. All rights reserved.</div>
+        </footer>
     </div>
+
+    <div id="private-notice" class="access-denied">
+        <h2>403 — Private Article</h2>
+        <p>This news article is currently private or unpublished.</p>
+        <a href="../index.html" style="color:#121212; font-weight:bold;">&larr; Return to Homepage</a>
+    </div>
+
+    <script>
+        if (!IS_PUBLIC) {
+            document.getElementById('article-content').style.display = 'none';
+            document.getElementById('private-notice').style.display = 'block';
+        }
+    <\/script>
+
 </body>
 </html>`;
 
-            document.getElementById("code-output").textContent = htmlContent;
-            document.getElementById("output-area").style.display = "block";
+            // Download file directly
+            const filename = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.html';
+            const blob = new Blob([fullPageHTML], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
         }
     </script>
+
 </body>
 </html>
