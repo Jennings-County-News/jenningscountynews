@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennings County News</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', 'Times New Roman', serif; color: #121212; background-color: #fff; padding: 0 20px; max-width: 1280px; margin: 0 auto; }
+        .utility-bar { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 11px; font-family: Arial, sans-serif; text-transform: uppercase; border-bottom: 1px solid #e2e2e2; }
+        .utility-left span { margin-right: 15px; font-weight: bold; }
+        .utility-right button { background-color: #000; color: white; border: none; padding: 4px 8px; font-size: 10px; font-weight: bold; border-radius: 3px; cursor: pointer; }
+        header { text-align: center; padding: 15px 0 10px 0; border-bottom: 1px solid #121212; }
+        .masthead-title { font-size: 52px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1; margin-bottom: 8px; }
+        .sub-header { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #121212; border-bottom: 3px double #121212; padding: 4px 5px; font-size: 12px; font-family: Arial, sans-serif; }
+        nav { border-bottom: 1px solid #e2e2e2; margin-bottom: 20px; }
+        nav ul { display: flex; justify-content: center; list-style: none; padding: 6px 0; flex-wrap: wrap; }
+        nav li { margin: 0 12px; }
+        nav a { text-decoration: none; color: #333; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        nav a:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 2.5fr 4.5fr 2fr; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid #e2e2e2; }
+        .column { display: flex; flex-direction: column; }
+        .column-left { border-right: 1px solid #e2e2e2; padding-right: 15px; }
+        .column-center { padding: 0 5px; }
+        .column-right { border-left: 1px solid #e2e2e2; padding-left: 15px; }
+        .story { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .story:last-child { border-bottom: none; }
+        .kicker { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 3px; }
+        .headline-lead { font-size: 28px; font-weight: bold; line-height: 1.15; margin-bottom: 8px; }
+        .headline-secondary { font-size: 18px; font-weight: bold; line-height: 1.2; margin-bottom: 6px; }
+        .headline-small { font-size: 14px; font-weight: bold; line-height: 1.25; margin-bottom: 4px; }
+        .byline { font-family: Arial, sans-serif; font-size: 10px; color: #666; margin-bottom: 8px; text-transform: uppercase; }
+        .summary { font-size: 13px; line-height: 1.4; color: #333; }
+        .media-placeholder { width: 100%; height: 240px; background-color: #efefef; display: flex; align-items: center; justify-content: center; color: #777; font-family: Arial, sans-serif; font-size: 12px; border: 1px solid #ddd; margin: 10px 0; }
+        .caption { font-family: Arial, sans-serif; font-size: 10px; color: #666; margin-top: 4px; line-height: 1.3; }
+        .sidebar-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; border-top: 1px solid #121212; border-bottom: 1px solid #121212; padding: 3px 0; margin-bottom: 12px; }
+        footer { margin-top: 20px; padding: 20px 0; border-top: 1px solid #121212; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer ul { list-style: none; display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; }
+        footer a { color: #666; text-decoration: none; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } .column-left, .column-right { border: none; padding: 0; } .masthead-title { font-size: 36px; } }
+    </style>
+</head>
+<body>
+    <div class="utility-bar">
+        <div class="utility-left">
+            <span id="current-date"></span>
+            <span>Today’s Paper</span>
+        </div>
+        <div class="utility-right">
+            <span>Vernon, IN: 78°F</span>
+            <button>SUBSCRIBE</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 class="masthead-title">Jennings County News</h1>
+        <div class="sub-header">
+            <span>"Serving North Vernon, Vernon, and Surrounding Communities"</span>
+            <span>VOL. I... No. 1</span>
+            <span>$2.50</span>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">North Vernon</a></li>
+            <li><a href="#">Vernon</a></li>
+            <li><a href="#">County Government</a></li>
+            <li><a href="#">High School Sports</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Obituaries</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div class="column column-left">
+            <article class="story">
+                <div class="kicker">County Government</div>
+                <h3 class="headline-secondary">Commissioners Award Reassessment Bid to Tyler Tech</h3>
+                <div class="byline">By Local News Desk</div>
+                <p class="summary">Following extensive attorney review at the Annex Building, Commissioners approved moving forward with the lowest responsible bid to handle upcoming property reassessments across Jennings County.</p>
+            </article>
+            <article class="story">
+                <div class="kicker">Judicial Reform</div>
+                <h3 class="headline-secondary">Courts Propose County Referee Position to Offset Magistrate Loss</h3>
+                <div class="byline">By Civic Affairs Reporter</div>
+                <p class="summary">With state legislation phasing out local magistrate slots, Jennings County judges presented a plan to secure grant funding for a local court referee to prevent severe case backlogs.</p>
+            </article>
+        </div>
+
+        <div class="column column-center">
+            <article class="story">
+                <div class="kicker">Infrastructure & Planning</div>
+                <h2 class="headline-lead">Vernon Seeks $12.5 Million Funding Package for Infrastructure Overhaul</h2>
+                <div class="byline">By Jennings County Bureau</div>
+                <div class="media-placeholder">[ Photography: Historic Vernon Town Square ]</div>
+                <p class="summary">VERNON — In a bid to revitalize key historical corridors and update municipal infrastructure, town leadership formally requested assistance from the Jennings County Redevelopment Commission this week to secure competitive state and federal grants.</p>
+            </article>
+        </div>
+
+        <div class="column column-right">
+            <div class="sidebar-title">Opinion & Commentary</div>
+            <article class="story">
+                <div class="byline">EDITORIAL BOARD</div>
+                <h3 class="headline-small">Balancing Preservation and Growth in Historic Vernon</h3>
+                <p class="summary">As infrastructure demands mount across our small towns, matching grants represent the smartest path forward for local tax dollars...</p>
+            </article>
+            <div class="sidebar-title">Public Safety</div>
+            <article class="story">
+                <div class="kicker">Traffic Safety</div>
+                <h3 class="headline-small">NVPD Initiates School Zone Speed Enforcement</h3>
+                <p class="summary">Targeted patrols funded by local safety grants will be stationed around school routes throughout North Vernon through the remainder of the month.</p>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="#">About Jennings County News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Advertise</a></li>
+        </ul>
+        <p>&copy; 2026 Jennings County News. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', options);
+    </script>
+</body>
+</html>
