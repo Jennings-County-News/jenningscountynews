@@ -29,9 +29,11 @@
         .edit-input { width: 100%; border: 1px dashed #ccc; padding: 4px; background: #fff; }
         .edit-input:focus { outline: 2px solid #b20000; border-color: transparent; }
 
-        /* Dropdown Category Select Box */
-        .category-select { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; background: #fff; border: 1px dashed #ccc; padding: 4px 6px; cursor: pointer; width: 100%; }
+        /* Mix and Match Category Dropdowns */
+        .category-container { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .category-select { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; letter-spacing: 0.5px; background: #fff; border: 1px dashed #ccc; padding: 4px 6px; cursor: pointer; }
         .category-select:focus { outline: 2px solid #b20000; border-color: transparent; }
+        .category-bullet { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; }
 
         .headline-input { font-family: 'Georgia', serif; font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; }
         .subheadline-input { font-family: 'Georgia', serif; font-size: 18px; color: #444; font-style: italic; margin-bottom: 15px; }
@@ -56,6 +58,7 @@
 </head>
 <body>
 
+    <!-- ADMIN CONTROL BAR -->
     <div class="admin-controls">
         <div>
             <label for="visibility-toggle">Visibility:</label>
@@ -82,16 +85,35 @@
 
     <div class="ad-space">Advertisement Space</div>
 
+    <!-- INLINE ARTICLE EDITOR -->
     <article>
-        <select id="edit-cat" class="category-select">
-            <option value="JENNINGS COUNTY • PUBLIC SAFETY">JENNINGS COUNTY • PUBLIC SAFETY</option>
-            <option value="BARTHOLOMEW COUNTY • COLUMBUS">BARTHOLOMEW COUNTY • COLUMBUS</option>
-            <option value="JACKSON COUNTY • SEYMOUR">JACKSON COUNTY • SEYMOUR</option>
-            <option value="JENNINGS COUNTY • INFRASTRUCTURE">JENNINGS COUNTY • INFRASTRUCTURE</option>
-            <option value="NORTH VERNON • PROGRESS">NORTH VERNON • PROGRESS</option>
-            <option value="HIGH SCHOOL ATHLETICS • CROSS COUNTRY">HIGH SCHOOL ATHLETICS • CROSS COUNTRY</option>
-            <option value="TRI-COUNTY • ENFORCEMENT">TRI-COUNTY • ENFORCEMENT</option>
-        </select>
+        <!-- MIX AND MATCH DROPDOWN SELECTORS -->
+        <div class="category-container">
+            <select id="edit-region" class="category-select">
+                <option value="JENNINGS COUNTY">JENNINGS COUNTY</option>
+                <option value="BARTHOLOMEW COUNTY">BARTHOLOMEW COUNTY</option>
+                <option value="JACKSON COUNTY">JACKSON COUNTY</option>
+                <option value="NORTH VERNON">NORTH VERNON</option>
+                <option value="TRI-COUNTY">TRI-COUNTY</option>
+                <option value="HIGH SCHOOL ATHLETICS">HIGH SCHOOL ATHLETICS</option>
+            </select>
+
+            <span class="category-bullet">•</span>
+
+            <select id="edit-topic" class="category-select">
+                <option value="MAIN STORY">MAIN STORY</option>
+                <option value="PUBLIC SAFETY">PUBLIC SAFETY</option>
+                <option value="INFRASTRUCTURE">INFRASTRUCTURE</option>
+                <option value="PROGRESS">PROGRESS</option>
+                <option value="LOCAL GOVERNMENT">LOCAL GOVERNMENT</option>
+                <option value="COMMUNITY & EVENTS">COMMUNITY & EVENTS</option>
+                <option value="BUSINESS & ECONOMY">BUSINESS & ECONOMY</option>
+                <option value="SPORTS">SPORTS</option>
+                <option value="CROSS COUNTRY">CROSS COUNTRY</option>
+                <option value="OBITUARIES">OBITUARIES</option>
+                <option value="ENFORCEMENT">ENFORCEMENT</option>
+            </select>
+        </div>
 
         <input type="text" id="edit-headline" class="edit-input headline-input" value="Headline of the Article Goes Here">
         <input type="text" id="edit-subheadline" class="edit-input subheadline-input" value="An optional subheadline or quick summary of the news story goes here.">
@@ -101,6 +123,7 @@
             <div>Published: August 30, 2026</div>
         </div>
 
+        <!-- PHOTO CONTAINER -->
         <div class="article-image">
             <div id="photo-box" class="photo-placeholder">[ Upload Image via Top Control Bar ]</div>
             <img id="image-preview" src="" alt="Article Photo">
@@ -143,7 +166,12 @@ Third paragraph with additional context and closing statements.</textarea>
 
         function generateArticleHTML() {
             const isPublic = document.getElementById('visibility-toggle').value;
-            const category = document.getElementById('edit-cat').value;
+            
+            // Mix & Match Category Result
+            const region = document.getElementById('edit-region').value;
+            const topic = document.getElementById('edit-topic').value;
+            const category = `${region} • ${topic}`;
+
             const headline = document.getElementById('edit-headline').value;
             const subheadline = document.getElementById('edit-subheadline').value;
             const byline = document.getElementById('edit-byline').value;
