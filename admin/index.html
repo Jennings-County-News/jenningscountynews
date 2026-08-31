@@ -8,6 +8,14 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px 40px; }
 
+        /* Admin Controls Bar */
+        .admin-controls { max-width: 900px; margin: 15px auto; background: #eef2f5; border: 1px solid #121212; padding: 12px 20px; font-family: Arial, sans-serif; font-size: 12px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; }
+        .admin-controls label { font-weight: bold; text-transform: uppercase; }
+        .admin-controls select, .admin-controls input[type="file"] { padding: 4px; font-size: 12px; }
+        .btn-download { background: #b20000; color: #fff; border: none; padding: 8px 16px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+        .btn-download:hover { background: #000; }
+
+        /* Top Bar & Masthead */
         .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
         .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
         .back-link:hover { color: #b20000; }
@@ -15,131 +23,146 @@
         header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
         .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
 
+        /* Article Workspace (Inline Editable Fields) */
         article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
-        .admin-control-bar { max-width: 750px; margin: 20px auto; background: #f0f0f0; border: 1px solid #121212; padding: 15px; font-family: Arial, sans-serif; font-size: 12px; }
-        .admin-control-bar label { font-weight: bold; display: block; margin-bottom: 5px; text-transform: uppercase; }
-        .admin-control-bar select, .admin-control-bar input[type="file"] { margin-bottom: 15px; font-size: 12px; }
+        .edit-input { width: 100%; border: 1px dashed #ccc; padding: 4px; background: #fff; }
+        .edit-input:focus { outline: 2px solid #b20000; border-color: transparent; }
 
-        .edit-category { width: 100%; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
-        .edit-headline { width: 100%; font-family: 'Georgia', serif; font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
-        .edit-subheadline { width: 100%; font-family: 'Georgia', serif; font-size: 18px; color: #444; font-style: italic; margin-bottom: 15px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+        .category-input { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .headline-input { font-family: 'Georgia', serif; font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; }
+        .subheadline-input { font-family: 'Georgia', serif; font-size: 18px; color: #444; font-style: italic; margin-bottom: 15px; }
         
         .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
-        .edit-byline { font-family: Arial, sans-serif; font-size: 11px; border: 1px dashed #bbb; padding: 2px 5px; text-transform: uppercase; }
+        .byline-input { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; width: 200px; }
 
+        /* Photo Upload & Preview Container */
         .article-image { margin-bottom: 25px; text-align: center; }
-        .article-image img { width: 100%; max-height: 450px; object-fit: cover; border: 1px solid #ddd; display: none; }
+        .article-image img { width: 100%; height: auto; border: 1px solid #ddd; display: none; }
         .photo-placeholder { background: #eee; height: 250px; display: flex; align-items: center; justify-content: center; color: #777; font-family: Arial, sans-serif; font-size: 12px; border: 1px dashed #aaa; }
-        .edit-caption { width: 100%; font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; border: 1px dashed #bbb; padding: 4px; background: transparent; }
+        .caption-input { font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; }
 
-        .edit-body { width: 100%; min-height: 250px; font-family: 'Georgia', serif; font-size: 17px; line-height: 1.6; color: #1a1a1a; padding: 10px; border: 1px dashed #bbb; background: transparent; }
+        /* Body Editor */
+        .body-input { width: 100%; min-height: 250px; font-family: 'Georgia', serif; font-size: 17px; line-height: 1.6; color: #1a1a1a; padding: 10px; border: 1px dashed #ccc; background: #fff; resize: vertical; }
 
-        .action-bar { max-width: 750px; margin: 20px auto; text-align: center; }
-        .btn-action { background: #121212; color: #fff; border: none; padding: 12px 24px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
-        .btn-action:hover { background: #b20000; }
+        .ad-space { max-width: 750px; margin: 20px auto; text-align: center; background: #f0f0f0; border: 1px dashed #ccc; padding: 15px; font-family: Arial, sans-serif; font-size: 10px; color: #888; text-transform: uppercase; }
 
-        footer { max-width: 900px; margin: 30px auto 0; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer { max-width: 900px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer a { color: inherit; text-decoration: none; }
     </style>
 </head>
 <body>
 
+    <div class="admin-controls">
+        <div>
+            <label for="visibility-toggle">Visibility:</label>
+            <select id="visibility-toggle">
+                <option value="true">Public (IS_PUBLIC = true)</option>
+                <option value="false">Private (IS_PUBLIC = false)</option>
+            </select>
+        </div>
+        <div>
+            <label for="image-upload">Upload Story Image:</label>
+            <input type="file" id="image-upload" accept="image/*" onchange="handleImageUpload(event)">
+        </div>
+        <button class="btn-download" onclick="generateArticleHTML()">Download .html File</button>
+    </div>
+
     <div class="utility-bar">
         <a href="../index.html" class="back-link">&larr; Return to Front Page</a>
-        <div>EDITOR PORTAL</div>
+        <div>JENNINGS COUNTY NEWS • EDITOR PORTAL</div>
     </div>
 
     <header>
         <a href="../index.html" class="masthead-title">Jennings County News</a>
     </header>
 
-    <div class="admin-control-bar">
-        <label for="visibility-select">Article Visibility:</label>
-        <select id="visibility-select">
-            <option value="true">Public (Visible to everyone)</option>
-            <option value="false">Private (Hidden from public)</option>
-        </select>
-
-        <label for="image-input">Upload Story Image:</label>
-        <input type="file" id="image-input" accept="image/*" onchange="previewUploadedImage(event)">
-    </div>
+    <div class="ad-space">Advertisement Space</div>
 
     <article>
-        <input type="text" id="cat-field" class="edit-category" value="JENNINGS COUNTY • PUBLIC SAFETY">
-        <input type="text" id="title-field" class="edit-headline" value="Headline of the Article Goes Here">
-        <input type="text" id="sub-field" class="edit-subheadline" value="An optional subheadline or quick summary of the news story goes here.">
+        <input type="text" id="edit-cat" class="edit-input category-input" value="JENNINGS COUNTY • PUBLIC SAFETY">
+        <input type="text" id="edit-headline" class="edit-input headline-input" value="Headline of the Article Goes Here">
+        <input type="text" id="edit-subheadline" class="edit-input subheadline-input" value="An optional subheadline or quick summary of the news story goes here.">
         
         <div class="byline-bar">
-            <div>BY <input type="text" id="author-field" class="edit-byline" value="Staff Reporter"></div>
-            <div>PUBLISHED: <span id="current-date">August 30, 2026</span></div>
+            <div>By <input type="text" id="edit-byline" class="edit-input byline-input" value="Staff Reporter"></div>
+            <div>Published: August 30, 2026</div>
         </div>
 
         <div class="article-image">
-            <div id="photo-box" class="photo-placeholder">[ Upload photo above to embed image ]</div>
-            <img id="image-preview" src="" alt="Story Image">
-            <input type="text" id="caption-field" class="edit-caption" value="Caption explaining the photo and crediting the photographer.">
+            <div id="photo-box" class="photo-placeholder">[ Upload Image via Top Control Bar ]</div>
+            <img id="image-preview" src="" alt="Article Photo">
+            <input type="text" id="edit-caption" class="edit-input caption-input" value="Caption explaining the photo and crediting the photographer.">
         </div>
 
-        <textarea id="body-field" class="edit-body" placeholder="Write story paragraphs here...">NORTH VERNON — The opening paragraph of your article goes here.
+        <textarea id="edit-body" class="body-input">NORTH VERNON — The opening paragraph of your article goes here. The first letter will automatically render as a classic newspaper drop-cap.
 
 Second paragraph goes here. Add details, quotes, and background information regarding the event or notice.
 
 Third paragraph with additional context and closing statements.</textarea>
     </article>
 
-    <div class="action-bar">
-        <button class="btn-action" onclick="generateAndDownloadHTML()">Download Article File (.html)</button>
-    </div>
+    <div class="ad-space">Advertisement Space</div>
 
     <footer>
-        &copy; 2026 Jennings County News Editor System.
+        <div><a href="../index.html">Front Page</a> &bull; <a href="index.html">Editor Portal</a> &bull; <a href="#">Contact Us</a></div>
+        <div style="margin-top: 8px;">&copy; 2026 Jennings County News. All rights reserved.</div>
     </footer>
 
     <script>
-        let uploadedImageBase64 = "";
+        let uploadedBase64Image = "";
 
-        function previewUploadedImage(event) {
+        // Convert uploaded image file to Base64 to embed into final HTML output
+        function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    uploadedImageBase64 = e.target.result;
-                    const img = document.getElementById('image-preview');
-                    const box = document.getElementById('photo-box');
-                    img.src = uploadedImageBase64;
-                    img.style.display = 'block';
-                    box.style.display = 'none';
+                    uploadedBase64Image = e.target.result;
+                    const imgPreview = document.getElementById('image-preview');
+                    const photoBox = document.getElementById('photo-box');
+                    
+                    imgPreview.src = uploadedBase64Image;
+                    imgPreview.style.display = 'block';
+                    photoBox.style.display = 'none';
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function generateAndDownloadHTML() {
-            const isPublic = document.getElementById('visibility-select').value;
-            const category = document.getElementById('cat-field').value;
-            const title = document.getElementById('title-field').value;
-            const subtitle = document.getElementById('sub-field').value;
-            const author = document.getElementById('author-field').value;
-            const caption = document.getElementById('caption-field').value;
+        // Export current view directly into the standalone article template
+        function generateArticleHTML() {
+            const isPublic = document.getElementById('visibility-toggle').value;
+            const category = document.getElementById('edit-cat').value;
+            const headline = document.getElementById('edit-headline').value;
+            const subheadline = document.getElementById('edit-subheadline').value;
+            const byline = document.getElementById('edit-byline').value;
+            const caption = document.getElementById('edit-caption').value;
             
-            const rawBody = document.getElementById('body-field').value;
-            const paragraphs = rawBody.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('\n            ');
+            // Format body paragraphs
+            const rawBody = document.getElementById('edit-body').value;
+            const formattedBody = rawBody.split('\n\n')
+                .filter(p => p.trim() !== '')
+                .map(p => `<p>${p.trim()}</p>`)
+                .join('\n            ');
 
-            let imageHTML = `<div style="background:#eee; height:250px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>`;
-            if (uploadedImageBase64) {
-                imageHTML = `<img src="${uploadedImageBase64}" alt="${title}">`;
+            // Handle image rendering
+            let imageContent = `<div style="background:#eee; height:300px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>`;
+            if (uploadedBase64Image) {
+                imageContent = `<img src="${uploadedBase64Image}" alt="${headline}">`;
             }
 
-            const fullPageHTML = `<!DOCTYPE html>
+            const outputHTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} | Jennings County News</title>
+    <title>${headline} | Jennings County News</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px; }
 
+        /* Top Bar & Masthead */
         .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
         .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
         .back-link:hover { color: #b20000; }
@@ -147,6 +170,7 @@ Third paragraph with additional context and closing statements.</textarea>
         header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
         .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
 
+        /* Article Main Content */
         article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
         
         .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
@@ -155,16 +179,23 @@ Third paragraph with additional context and closing statements.</textarea>
         
         .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; }
         
+        /* Image / Media Container */
         .article-image { margin-bottom: 25px; }
         .article-image img { width: 100%; height: auto; border: 1px solid #ddd; }
         .image-caption { font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; }
 
+        /* Story Text Body */
         .article-body p { font-size: 17px; margin-bottom: 18px; color: #1a1a1a; text-align: justify; }
         .article-body p:first-of-type::first-letter { font-size: 42px; float: left; line-height: 0.8; padding-right: 8px; font-weight: bold; font-family: 'Times New Roman', serif; }
 
+        /* Ad Placeholder Space */
+        .ad-space { max-width: 750px; margin: 20px auto; text-align: center; background: #f0f0f0; border: 1px dashed #ccc; padding: 15px; font-family: Arial, sans-serif; font-size: 10px; color: #888; text-transform: uppercase; }
+
+        /* Private / Access Denied Screen */
         .access-denied { max-width: 600px; margin: 80px auto; text-align: center; font-family: Arial, sans-serif; display: none; }
         .access-denied h2 { font-size: 28px; margin-bottom: 10px; color: #b20000; }
         .access-denied p { font-size: 14px; color: #555; margin-bottom: 20px; }
+        .access-denied a { color: #121212; font-weight: bold; text-decoration: underline; }
 
         footer { max-width: 900px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
         footer a { color: inherit; text-decoration: none; }
@@ -186,28 +217,32 @@ Third paragraph with additional context and closing statements.</textarea>
             <a href="../index.html" class="masthead-title">Jennings County News</a>
         </header>
 
+        <div class="ad-space">Advertisement Space</div>
+
         <article>
             <div class="category">${category}</div>
-            <h1 class="article-headline">${title}</h1>
-            <div class="subheadline">${subtitle}</div>
+            <h1 class="article-headline">${headline}</h1>
+            <div class="subheadline">${subheadline}</div>
             
             <div class="byline-bar">
-                <div>By <strong>${author}</strong></div>
+                <div>By <strong>${byline}</strong></div>
                 <div>Published: August 30, 2026</div>
             </div>
 
             <div class="article-image">
-                ${imageHTML}
+                ${imageContent}
                 <div class="image-caption">${caption}</div>
             </div>
 
             <div class="article-body">
-                ${paragraphs}
+                ${formattedBody}
             </div>
         </article>
 
+        <div class="ad-space">Advertisement Space</div>
+
         <footer>
-            <div><a href="../index.html">Front Page</a> &bull; <a href="../admin/index.html">Editor Portal</a></div>
+            <div><a href="../index.html">Front Page</a> &bull; <a href="../admin/index.html">Editor Portal</a> &bull; <a href="#">Contact Us</a></div>
             <div style="margin-top: 8px;">&copy; 2026 Jennings County News. All rights reserved.</div>
         </footer>
     </div>
@@ -215,10 +250,11 @@ Third paragraph with additional context and closing statements.</textarea>
     <div id="private-notice" class="access-denied">
         <h2>403 — Private Article</h2>
         <p>This news article is currently private or unpublished.</p>
-        <a href="../index.html" style="color:#121212; font-weight:bold;">&larr; Return to Homepage</a>
+        <a href="../index.html">&larr; Return to Homepage</a>
     </div>
 
     <script>
+        // Check visibility status on load
         if (!IS_PUBLIC) {
             document.getElementById('article-content').style.display = 'none';
             document.getElementById('private-notice').style.display = 'block';
@@ -228,11 +264,12 @@ Third paragraph with additional context and closing statements.</textarea>
 </body>
 </html>`;
 
-            const filename = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.html';
-            const blob = new Blob([fullPageHTML], { type: 'text/html' });
+            // Download file
+            const fileName = headline.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.html';
+            const blob = new Blob([outputHTML], { type: 'text/html' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = filename;
+            link.download = fileName;
             link.click();
         }
     </script>
