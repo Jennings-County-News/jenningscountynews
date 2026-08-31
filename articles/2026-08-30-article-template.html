@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title Goes Here | Jennings County News</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', serif; background-color: #fcfcfc; color: #121212; line-height: 1.6; padding: 0 15px; }
+
+        /* Top Bar & Masthead */
+        .utility-bar { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #121212; text-transform: uppercase; }
+        .back-link { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #121212; text-transform: uppercase; }
+        .back-link:hover { color: #b20000; }
+
+        header { max-width: 900px; margin: 0 auto; text-align: center; padding: 15px 0 10px; border-bottom: 3px double #121212; }
+        .masthead-title { font-size: 36px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-family: 'Times New Roman', serif; text-decoration: none; color: #121212; }
+
+        /* Article Main Content */
+        article { max-width: 750px; margin: 30px auto; padding-bottom: 40px; border-bottom: 1px solid #121212; }
+        
+        .category { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #b20000; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        h1.article-headline { font-size: 38px; line-height: 1.15; font-weight: bold; margin-bottom: 12px; }
+        .subheadline { font-size: 18px; color: #444; line-height: 1.3; margin-bottom: 15px; font-style: italic; }
+        
+        .byline-bar { font-family: Arial, sans-serif; font-size: 11px; color: #666; text-transform: uppercase; padding: 8px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 25px; display: flex; justify-content: space-between; }
+        
+        /* Image / Media Container */
+        .article-image { margin-bottom: 25px; }
+        .article-image img { width: 100%; height: auto; border: 1px solid #ddd; }
+        .image-caption { font-family: Arial, sans-serif; font-size: 11px; color: #555; margin-top: 5px; }
+
+        /* Story Text Body */
+        .article-body p { font-size: 17px; margin-bottom: 18px; color: #1a1a1a; text-align: justify; }
+        .article-body p:first-of-type::first-letter { font-size: 42px; float: left; line-height: 0.8; padding-right: 8px; font-weight: bold; font-family: 'Times New Roman', serif; }
+
+        /* Ad Placeholder Space */
+        .ad-space { max-width: 750px; margin: 20px auto; text-align: center; background: #f0f0f0; border: 1px dashed #ccc; padding: 15px; font-family: Arial, sans-serif; font-size: 10px; color: #888; text-transform: uppercase; }
+
+        /* Private / Access Denied Screen */
+        .access-denied { max-width: 600px; margin: 80px auto; text-align: center; font-family: Arial, sans-serif; display: none; }
+        .access-denied h2 { font-size: 28px; margin-bottom: 10px; color: #b20000; }
+        .access-denied p { font-size: 14px; color: #555; margin-bottom: 20px; }
+        .access-denied a { color: #121212; font-weight: bold; text-decoration: underline; }
+
+        footer { max-width: 900px; margin: 0 auto 30px; text-align: center; font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+        footer a { color: inherit; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <!-- SET PUBLIC STATUS HERE: true OR false -->
+    <script>
+        const IS_PUBLIC = true;
+    </script>
+
+    <div id="article-content">
+        <div class="utility-bar">
+            <a href="../index.html" class="back-link">&larr; Return to Front Page</a>
+            <div>JENNINGS COUNTY NEWS</div>
+        </div>
+
+        <header>
+            <a href="../index.html" class="masthead-title">Jennings County News</a>
+        </header>
+
+        <!-- Top Article Ad Slot -->
+        <div class="ad-space">Advertisement Space</div>
+
+        <article>
+            <div class="category">JENNINGS COUNTY • PUBLIC SAFETY</div>
+            <h1 class="article-headline">Headline of the Article Goes Here</h1>
+            <div class="subheadline">An optional subheadline or quick summary of the news story goes here.</div>
+            
+            <div class="byline-bar">
+                <div>By <strong>Staff Reporter</strong></div>
+                <div>Published: August 30, 2026</div>
+            </div>
+
+            <!-- Optional Photo Box -->
+            <div class="article-image">
+                <div style="background:#eee; height:300px; display:flex; align-items:center; justify-content:center; color:#777; font-family:Arial; font-size:12px;">[ Main Story Photo ]</div>
+                <div class="image-caption">Caption explaining the photo and crediting the photographer.</div>
+            </div>
+
+            <div class="article-body">
+                <p><strong>NORTH VERNON</strong> — The opening paragraph of your article goes here. The first letter will automatically render as a classic newspaper drop-cap.</p>
+                <p>Second paragraph goes here. Add details, quotes, and background information regarding the event or notice.</p>
+                <p>Third paragraph with additional context and closing statements.</p>
+            </div>
+        </article>
+
+        <!-- Bottom Article Ad Slot -->
+        <div class="ad-space">Advertisement Space</div>
+
+        <footer>
+            <div><a href="../index.html">Front Page</a> &bull; <a href="../admin/index.html">Editor Portal</a> &bull; <a href="#">Contact Us</a></div>
+            <div style="margin-top: 8px;">&copy; 2026 Jennings County News. All rights reserved.</div>
+        </footer>
+    </div>
+
+    <!-- Hidden Access Denied Message -->
+    <div id="private-notice" class="access-denied">
+        <h2>403 — Private Article</h2>
+        <p>This news article is currently private or unpublished.</p>
+        <a href="../index.html">&larr; Return to Homepage</a>
+    </div>
+
+    <script>
+        // Check visibility status on load
+        if (!IS_PUBLIC) {
+            document.getElementById('article-content').style.display = 'none';
+            document.getElementById('private-notice').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
