@@ -2,8 +2,6 @@ backend:
   name: github
   repo: Jennings-County-News/jenningscountynews
   branch: main
-  base_url: https://sstatic.net
-  auth_endpoint: /auth/github
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
